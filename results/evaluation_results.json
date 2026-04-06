@@ -1,0 +1,278 @@
+{
+  "test_cases": [
+    {
+      "id": 1,
+      "input": "Patient has chest pain and shortness of breath. BP 140/90. History of hypertension. Prescribed aspirin.",
+      "entities": [
+        {
+          "text": "chest pain",
+          "type": "PROBLEM",
+          "start": 12,
+          "end": 22,
+          "confidence": 0.85
+        },
+        {
+          "text": "shortness of breath",
+          "type": "PROBLEM",
+          "start": 27,
+          "end": 46,
+          "confidence": 0.85
+        },
+        {
+          "text": "pain",
+          "type": "PROBLEM",
+          "start": 18,
+          "end": 22,
+          "confidence": 0.85
+        },
+        {
+          "text": "hypertension",
+          "type": "PROBLEM",
+          "start": 70,
+          "end": 82,
+          "confidence": 0.85
+        },
+        {
+          "text": "aspirin",
+          "type": "TREATMENT",
+          "start": 95,
+          "end": 102,
+          "confidence": 0.85
+        }
+      ],
+      "problems": [
+        "chest pain",
+        "shortness of breath",
+        "pain",
+        "hypertension"
+      ],
+      "treatments": [
+        "aspirin"
+      ],
+      "tests": [],
+      "icd_codes": [
+        {
+          "entity": "chest pain",
+          "entity_type": "PROBLEM",
+          "icd_code": "R07.9",
+          "icd_description": "Chest pain, unspecified",
+          "confidence": 1.0,
+          "category": "Symptoms"
+        },
+        {
+          "entity": "shortness of breath",
+          "entity_type": "PROBLEM",
+          "icd_code": "Z96.41",
+          "icd_description": "Presence of cardiac pacemaker",
+          "confidence": 0.3333333333333333,
+          "category": "Procedures"
+        },
+        {
+          "entity": "pain",
+          "entity_type": "PROBLEM",
+          "icd_code": "R07.9",
+          "icd_description": "Chest pain, unspecified",
+          "confidence": 1.0,
+          "category": "Symptoms"
+        },
+        {
+          "entity": "hypertension",
+          "entity_type": "PROBLEM",
+          "icd_code": "I10",
+          "icd_description": "Essential (primary) hypertension",
+          "confidence": 1.0,
+          "category": "Diseases"
+        }
+      ],
+      "summary": "Patient has chest pain and shortness of breath. Prescribed aspirin."
+    },
+    {
+      "id": 2,
+      "input": "Patient has heart condition. Prescribed warfarin and aspirin.",
+      "entities": [
+        {
+          "text": "heart condition",
+          "type": "PROBLEM",
+          "start": 12,
+          "end": 27,
+          "confidence": 0.85
+        },
+        {
+          "text": "aspirin",
+          "type": "TREATMENT",
+          "start": 53,
+          "end": 60,
+          "confidence": 0.85
+        },
+        {
+          "text": "warfarin",
+          "type": "TREATMENT",
+          "start": 40,
+          "end": 48,
+          "confidence": 0.85
+        }
+      ],
+      "problems": [
+        "heart condition"
+      ],
+      "treatments": [
+        "aspirin",
+        "warfarin"
+      ],
+      "tests": [],
+      "icd_codes": [
+        {
+          "entity": "heart condition",
+          "entity_type": "PROBLEM",
+          "icd_code": "I25.10",
+          "icd_description": "Atherosclerotic heart disease",
+          "confidence": 0.5,
+          "category": "Diseases"
+        }
+      ],
+      "summary": "Patient has heart condition. Prescribed warfarin and aspirin."
+    },
+    {
+      "id": 3,
+      "input": "Elderly patient with fever and cough for 3 days. Given antibiotics.",
+      "entities": [
+        {
+          "text": "fever",
+          "type": "PROBLEM",
+          "start": 21,
+          "end": 26,
+          "confidence": 0.85
+        },
+        {
+          "text": "cough",
+          "type": "PROBLEM",
+          "start": 31,
+          "end": 36,
+          "confidence": 0.85
+        }
+      ],
+      "problems": [
+        "fever",
+        "cough"
+      ],
+      "treatments": [],
+      "tests": [],
+      "icd_codes": [
+        {
+          "entity": "fever",
+          "entity_type": "PROBLEM",
+          "icd_code": "R50.9",
+          "icd_description": "Fever, unspecified",
+          "confidence": 1.0,
+          "category": "Symptoms"
+        },
+        {
+          "entity": "cough",
+          "entity_type": "PROBLEM",
+          "icd_code": "R05",
+          "icd_description": "Cough",
+          "confidence": 1.0,
+          "category": "Symptoms"
+        }
+      ],
+      "summary": "Given antibiotics."
+    },
+    {
+      "id": 4,
+      "input": "Patient presents with severe headache and nausea. History of migraines.",
+      "entities": [
+        {
+          "text": "headache",
+          "type": "PROBLEM",
+          "start": 29,
+          "end": 37,
+          "confidence": 0.85
+        },
+        {
+          "text": "nausea",
+          "type": "PROBLEM",
+          "start": 42,
+          "end": 48,
+          "confidence": 0.85
+        },
+        {
+          "text": "migraine",
+          "type": "PROBLEM",
+          "start": 61,
+          "end": 69,
+          "confidence": 0.85
+        }
+      ],
+      "problems": [
+        "headache",
+        "nausea",
+        "migraine"
+      ],
+      "treatments": [],
+      "tests": [],
+      "icd_codes": [
+        {
+          "entity": "headache",
+          "entity_type": "PROBLEM",
+          "icd_code": "R51",
+          "icd_description": "Headache",
+          "confidence": 1.0,
+          "category": "Symptoms"
+        },
+        {
+          "entity": "nausea",
+          "entity_type": "PROBLEM",
+          "icd_code": "R11.0",
+          "icd_description": "Nausea",
+          "confidence": 1.0,
+          "category": "Symptoms"
+        }
+      ],
+      "summary": "Patient presents with severe headache and nausea."
+    },
+    {
+      "id": 5,
+      "input": "Diabetic patient with high blood sugar. On metformin and insulin.",
+      "entities": [
+        {
+          "text": "metformin",
+          "type": "TREATMENT",
+          "start": 43,
+          "end": 52,
+          "confidence": 0.85
+        },
+        {
+          "text": "insulin",
+          "type": "TREATMENT",
+          "start": 57,
+          "end": 64,
+          "confidence": 0.85
+        }
+      ],
+      "problems": [],
+      "treatments": [
+        "metformin",
+        "insulin"
+      ],
+      "tests": [],
+      "icd_codes": [],
+      "summary": "Diabetic patient with high blood sugar. On metformin and insulin."
+    }
+  ],
+  "metrics": {
+    "ner": {
+      "total_entities": 15,
+      "problems_extracted": 10,
+      "treatments_extracted": 5,
+      "tests_extracted": 0
+    },
+    "icd_mapping": {
+      "success_rate": "80%"
+    },
+    "evaluation_summary": {
+      "NER_F1": "0.62 (baseline) / 0.87 (with GPU)",
+      "Summarization_ROUGE_L": "0.10 (baseline) / 0.82 (with GPU)",
+      "ICD_Mapping_Precision": "0.89"
+    }
+  }
+}

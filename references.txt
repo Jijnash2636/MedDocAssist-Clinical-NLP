@@ -1,0 +1,23 @@
+[1] H.-C. Kuo et al., "Task-specific transformer-based language models in health care: Scoping review," JMIR Med. Inform., vol. 12, p. e49724, 2024.
+[2] K. Singhal et al., "Large language models encode clinical knowledge," Nature, vol. 620, pp. 172–180, 2023.
+[3] Q. Abbas, W. Jeong, and S. W. Lee, "Explainable AI in clinical decision support systems: A meta-analysis of methods, applications, and usability challenges," Healthcare, vol. 13, no. 17, p. 2154, 2025.
+[4] A. Radford, J. W. Kim, T. Xu, G. Brockman, C. McLeavey, and I. Sutskever, "Robust speech recognition via large-scale weak supervision," in Proc. ICML, vol. 202, pp. 28492–28518, 2023.
+[5] R. Smith, "An overview of the Tesseract OCR engine," in Proc. IEEE ICDAR, 2007, pp. 629–633.
+[6] J. Lee, W. Yoon, S. Kim, D. Kim, S. Kim, C. H. So, and J. Kang, "BioBERT: A pre-trained biomedical language representation model for biomedical text mining," Bioinformatics, vol. 36, no. 4, pp. 1234–1240, 2020.
+[7] H.-W. Chung et al., "Scaling instruction-finetuned language models," J. Mach. Learn. Res., vol. 25, no. 70, pp. 1–53, 2024.
+[8] Y. Gu, R. Tinn, H. Cheng, M. Lucas, N. Usuyama, X. Liu, T. Naumann, J. Gao, and H. Poon, "Domain-specific language model pretraining for biomedical natural language processing," ACM Trans. Comput. Healthcare, vol. 3, no. 1, pp. 1–23, 2021.
+[9] J. Anibal et al., "Voice EHR: Introducing multimodal audio data for health," Front. Digit. Health, vol. 6, p. 1448351, 2025.
+[10] E. Alsentzer et al., "Publicly available clinical BERT embeddings," in Proc. NAACL Clinical NLP Workshop, 2019, pp. 72–78.
+[11] A. Kovacevic et al., "De-identification of clinical free text using natural language processing: A systematic review of current approaches," Artif. Intell. Med., 2024.
+[12] K. Ye, "Hybrid large language model and rule-based framework for automated PHI de-identification in clinical notes," ICCK Trans. Emerg. Topics Artif. Intell., vol. 3, no. 1, pp. 1–8, 2025.
+[13] O. Uzuner, B. R. South, S. Shen, and S. L. Duvall, "2010 i2b2/VA challenge on concepts, assertions, and relations in clinical text," J. Am. Med. Inform. Assoc., vol. 18, no. 5, pp. 552–556, 2011.
+[14] E. Soysal et al., "CLAMP – A toolkit for efficiently building customized clinical NLP pipelines," J. Am. Med. Inform. Assoc., vol. 25, no. 3, pp. 331–336, 2018.
+[15] R. Sudarshan, D. Sasikala, and S. Kalavathi, "Advancing clinical text summarization through extractive methods using BERT-based models," in Proc. IEEE ICACRS, 2023, pp. 1288–1294.
+[16] P. Vinod et al., "Fine-tuning the BERTSUMEXT model for clinical report summarization," in Proc. IEEE INCET, 2020, pp. 1–5.
+[17] D. Van Veen et al., "Adapted large language models can outperform medical experts in clinical text summarization," Nat. Med., vol. 30, no. 4, pp. 1134–1142, 2024.
+[18] S. Ji, X. Li, W. Sun, H. Dong, A. Taalas, Y. Zhang, H. Wu, E. Pitkanen, and P. Marttinen, "A unified review of deep learning for automated medical coding," ACM Comput. Surv., vol. 56, no. 12, Art. 306, Oct. 2024.
+[19] I. Aden, C. H. Child, and C. C. Reyes-Aldasoro, "ICD prediction from MIMIC-III using pre-trained ClinicalBERT achieving state of the art," Big Data Cogn. Comput., vol. 8, no. 5, p. 47, 2024.
+[20] A. Johnson et al., "MIMIC-III, a freely accessible critical care database," Sci. Data, vol. 3, p. 160035, 2016.
+[21] Y. Zhao et al., "Drug-drug interactions prediction based on deep learning and knowledge graph: A review," iScience, vol. 27, no. 3, p. 109148, 2024.
+[22] Y. Zhang et al., "Machine learning models for drug-drug interaction prediction: From computational discovery to clinical application," npj Digit. Med., vol. 9, p. 42, 2024.
+[23] S. M. Lundberg and S.-I. Lee, "A unified approach to interpreting model predictions," in Proc. NeurIPS, 2017, pp. 4765–4774.
