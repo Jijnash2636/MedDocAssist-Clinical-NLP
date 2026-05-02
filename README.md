@@ -129,11 +129,13 @@ See `references.txt` for full IEEE citations (23 references).
 
 ---
 
-## 👨‍💻 Authors
+## 👨‍💻 Authors & Guide
 
-- **Jijnash Kumar**
-- **Avinash K**
-- **Priyadharsini C**
+*   **Authors:** 
+    *   **Jijnash Kumar M**
+    *   **Avinash K**
+*   **Guide:** 
+    *   **Dr. C. Priyadharsini**, Assistant Professor, School of Computing, SRMIST Tiruchirappalli
 
 ---
 
