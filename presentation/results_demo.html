@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedDocAssist - Results & Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1a1a2e; color: #fff; }
+        
+        .slide {
+            display: none;
+            min-height: 100vh;
+            padding: 60px 80px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        .slide.active { display: flex; flex-direction: column; justify-content: center; }
+        
+        .slide-number { position: absolute; bottom: 30px; right: 40px; font-size: 14px; color: #666; }
+        
+        h1 { font-size: 3.5em; margin-bottom: 20px; background: linear-gradient(90deg, #00d2ff, #3a7bd5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        h2 { font-size: 2.5em; margin-bottom: 30px; color: #00d2ff; border-bottom: 3px solid #00d2ff; padding-bottom: 15px; display: inline-block; }
+        h3 { font-size: 1.5em; color: #3a7bd5; margin: 15px 0; }
+        
+        .subtitle { font-size: 1.5em; color: #aaa; margin-bottom: 40px; }
+        
+        .grid { display: grid; gap: 30px; margin-top: 30px; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-4 { grid-template-columns: repeat(4, 1fr); }
+        
+        .card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); border-color: #00d2ff; }
+        .card h4 { color: #00d2ff; margin-bottom: 15px; font-size: 1.3em; }
+        .card p { color: #ccc; line-height: 1.6; }
+        .card .metric { font-size: 3em; font-weight: bold; color: #00ff88; margin: 10px 0; }
+        .card .metric-label { color: #888; font-size: 0.9em; }
+        
+        .table-container { overflow-x: auto; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; }
+        th { background: rgba(0,210,255,0.2); color: #00d2ff; padding: 15px; text-align: left; font-size: 1.1em; }
+        td { padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,0.1); color: #ddd; }
+        tr:hover { background: rgba(255,255,255,0.05); }
+        
+        .highlight { color: #00ff88; font-weight: bold; }
+        .tag { display: inline-block; background: rgba(0,210,255,0.2); color: #00d2ff; padding: 5px 15px; border-radius: 20px; margin: 5px; font-size: 0.9em; }
+        .tag.green { background: rgba(0,255,136,0.2); color: #00ff88; }
+        .tag.orange { background: rgba(255,165,0,0.2); color: #ffa500; }
+        
+        .flow { display: flex; align-items: center; justify-content: space-around; margin: 30px 0; }
+        .flow-item { background: rgba(0,210,255,0.1); border: 2px solid #00d2ff; border-radius: 10px; padding: 15px 25px; text-align: center; }
+        .flow-arrow { font-size: 2em; color: #00d2ff; }
+        
+        .nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+        }
+        .nav button {
+            background: rgba(0,210,255,0.2);
+            border: 2px solid #00d2ff;
+            color: #00d2ff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        .nav button:hover { background: #00d2ff; color: #1a1a2e; }
+        
+        .progress { position: fixed; top: 0; left: 0; height: 4px; background: #00d2ff; transition: width 0.3s; z-index: 100; }
+        
+        .demo-box { background: #000; border-radius: 10px; padding: 25px; margin: 20px 0; border: 1px solid #333; }
+        .demo-box .input { color: #00ff88; font-family: monospace; }
+        .demo-box .output { color: #fff; font-family: monospace; }
+        .demo-box .comment { color: #666; font-style: italic; }
+        
+        .comparison { display: flex; gap: 30px; margin: 20px 0; }
+        .comparison-item { flex: 1; padding: 25px; border-radius: 10px; }
+        .comparison-item.before { background: rgba(255,0,0,0.1); border: 1px solid rgba(255,0,0,0.3); }
+        .comparison-item.after { background: rgba(0,255,0,0.1); border: 1px solid rgba(0,255,0,0.3); }
+        
+        .badge { display: inline-block; padding: 3px 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold; }
+        .badge.high { background: #ff4444; color: white; }
+        .badge.med { background: #ffbb33; color: #000; }
+        .badge.low { background: #00C851; color: white; }
+
+        .img-container { margin: 20px 0; text-align: center; }
+        .img-container img { max-width: 100%; border-radius: 10px; border: 2px solid #333; }
+        .img-container .caption { color: #888; margin-top: 10px; font-size: 0.9em; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="progress" id="progress"></div>
+    
+    <!-- SLIDE 1: Title -->
+    <div class="slide active" data-slide="1">
+    <h1>MedDocAssist</h1>
+    <p class="subtitle">AI-Powered Clinical Note Summarization & Coding System</p>
+    <p style="color: #00ff88; font-size: 1.1em; margin-top: 15px;">Multimodal Input: Text, Audio, Image</p>
+    <div style="margin-top: 40px;">
+            <span class="tag">BioBERT</span>
+            <span class="tag">Flan-T5</span>
+            <span class="tag">PubMedBERT</span>
+            <span class="tag green">ICD-10</span>
+            <span class="tag orange">HIPAA</span>
+        </div>
+        <p style="margin-top: 50px; color: #666;">
+            <strong>Authors:</strong> Jijnash Kumar | Avinash K | Priyadharsini C
+        </p>
+        <p class="slide-number">1 / 8</p>
+    </div>
+
+    <!-- SLIDE 2: Problem Statement -->
+    <div class="slide" data-slide="2">
+        <h2>Problem Statement</h2>
+        <div class="grid grid-3" style="margin-top: 40px;">
+            <div class="card">
+                <h4>50%</h4>
+                <p>Of physician time spent on documentation instead of patient care</p>
+            </div>
+            <div class="card">
+                <h4>4-6 hrs/day</h4>
+                <p>Average time physicians spend on EHR data entry daily</p>
+            </div>
+            <div class="card">
+                <h4>43%</h4>
+                <p>Of physicians report burnout due to administrative burden</p>
+            </div>
+        </div>
+        <div class="card" style="margin-top: 40px; background: rgba(255,165,0,0.1); border-color: #ffa500;">
+            <h4>Our Solution</h4>
+            <p>Automate clinical note processing with <span class="highlight">8 Novel AI Contributions</span> to reduce documentation time by up to 40%</p>
+        </div>
+        <p class="slide-number">2 / 8</p>
+    </div>
+
+    <!-- SLIDE 3: System Pipeline -->
+    <div class="slide" data-slide="3">
+        <h2>System Pipeline</h2>
+        <div class="flow">
+            <div class="flow-item">Input<br><small>Text/Audio/Image</small></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">Normalization<br><small>Abbreviation Expansion</small></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">PHI Removal<br><small>HIPAA Compliance</small></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">AI Processing<br><small>NER, Summary, ICD</small></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">Output<br><small>Structured JSON</small></div>
+        </div>
+        <div class="img-container">
+            <img src="../results/8k/figure1_architecture_ieee.png" alt="System Architecture" style="max-height: 350px;">
+            <p class="caption">Figure 1: MedDocAssist High-Level System Architecture</p>
+        </div>
+        <p class="slide-number">3 / 9</p>
+    </div>
+
+    <!-- SLIDE 4: Multimodal Input -->
+    <div class="slide" data-slide="4">
+        <h2>Multimodal Input System</h2>
+        <p style="color: #aaa; margin-bottom: 20px;">Three input modalities — all feed into the same clinical NLP pipeline</p>
+        <div class="grid grid-3" style="margin-top: 20px;">
+            <div class="card">
+                <h4>Text Input</h4>
+                <p style="font-family: monospace; font-size: 0.9em; color: #00ff88;">Direct text entry or sample notes</p>
+                <div class="demo-box" style="margin-top: 15px;">
+                    <p class="input">"Chest pain + SOB"</p>
+                </div>
+            </div>
+            <div class="card">
+                <h4>Audio Input</h4>
+                <p style="font-family: monospace; font-size: 0.9em; color: #00d2ff;">Whisper ASR transcription</p>
+                <div class="demo-box" style="margin-top: 15px;">
+                    <p class="input">[WAV/MP3 upload]</p>
+                </div>
+            </div>
+            <div class="card">
+                <h4>Image Input</h4>
+                <p style="font-family: monospace; font-size: 0.9em; color: #ffaa00;">Tesseract OCR extraction</p>
+                <div class="demo-box" style="margin-top: 15px;">
+                    <p class="input">[PNG/JPG upload]</p>
+                </div>
+            </div>
+        </div>
+        <div class="card" style="margin-top: 30px; background: rgba(0,255,136,0.1); border-color: #00ff88;">
+            <h4 style="color: #00ff88;">Pipeline Flow</h4>
+            <p>Audio/Image → <span class="highlight">Extracted Text</span> → Normalization → PHI Removal → NER → ICD Mapping → Summary → Drug Check</p>
+        </div>
+        <p class="slide-number">4 / 9</p>
+    </div>
+
+    <!-- SLIDE 5: NER Results -->
+    <div class="slide" data-slide="5">
+        <h2>Named Entity Recognition Results</h2>
+        <div class="comparison">
+            <div class="comparison-item before">
+                <h3 style="color: #ff4444;">Baseline (Generic BERT)</h3>
+                <table style="margin-top: 15px;">
+                    <tr><td>Precision</td><td>0.72</td></tr>
+                    <tr><td>Recall</td><td>0.70</td></tr>
+                    <tr><td><strong>F1-Score</strong></td><td><strong>0.72</strong></td></tr>
+                </table>
+            </div>
+            <div class="comparison-item after">
+                <h3 style="color: #00ff88;">BioBERT (Proposed)</h3>
+                <table style="margin-top: 15px;">
+                    <tr><td>Precision</td><td><strong class="highlight">0.89</strong></td></tr>
+                    <tr><td>Recall</td><td><strong class="highlight">0.85</strong></td></tr>
+                    <tr><td><strong>F1-Score</strong></td><td><strong class="highlight">0.87</strong></td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="img-container">
+            <img src="../results/8k/figure5_performance.png" alt="Performance Comparison" style="max-height: 300px;">
+            <p class="caption">Figure 2: BioBERT vs Generic BERT — +15% F1 Improvement</p>
+        </div>
+        <p class="slide-number">5 / 9</p>
+    </div>
+
+    <!-- SLIDE 6: PHI & ICD Results -->
+    <div class="slide" data-slide="6">
+        <h2>PHI De-identification & ICD Mapping</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>PHI De-identification</h4>
+                <p>HIPAA-compliant removal of sensitive patient data</p>
+                <div style="margin-top: 15px;">
+                    <span class="tag green">Regex Patterns</span>
+                    <span class="tag green">Gazetteer</span>
+                    <span class="tag green">NER-based</span>
+                </div>
+                <div class="demo-box" style="margin-top: 15px;">
+                    <p class="comment">// Input</p>
+                    <p class="input">"Patient John Doe (555-0199)"</p>
+                    <p class="comment">// Output</p>
+                    <p class="output">"Patient [REDACTED] [REDACTED]"</p>
+                </div>
+            </div>
+            <div class="card">
+                <h4>ICD-10 Mapping (PubMedBERT)</h4>
+                <table style="margin-top: 10px;">
+                    <tr><th>Clinical Term</th><th>ICD Code</th><th>Confidence</th></tr>
+                    <tr><td>chest pain</td><td>R07.9</td><td><span class="highlight">1.00</span></td></tr>
+                    <tr><td>hypertension</td><td>I10</td><td><span class="highlight">1.00</span></td></tr>
+                    <tr><td>diabetes</td><td>E11.9</td><td><span class="highlight">0.98</span></td></tr>
+                </table>
+                <p style="margin-top: 10px; color: #00ff88; font-weight: bold;">Precision@3: 0.89 | 34 Codes Mapped</p>
+            </div>
+        </div>
+        <p class="slide-number">6 / 9</p>
+    </div>
+
+    <!-- SLIDE 7: Summarization & Drug Alerts -->
+    <div class="slide" data-slide="7">
+        <h2>Summarization & Drug Interaction</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>Clinical Summarization (Flan-T5)</h4>
+                <div class="grid grid-3" style="margin-top: 15px;">
+                    <div style="text-align: center;">
+                        <div class="metric">42%</div>
+                        <div class="metric-label">Compression</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="metric">234→99</div>
+                        <div class="metric-label">Chars Reduced</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="metric">0.82+</div>
+                        <div class="metric-label">Expected ROUGE-L</div>
+                    </div>
+                </div>
+                <div class="demo-box" style="margin-top: 15px;">
+                    <p class="comment">// Summary Output</p>
+                    <p class="output">"History of hypertension and type 2 diabetes. Prescribed aspirin 81mg daily for cardiovascular prevention."</p>
+                </div>
+            </div>
+            <div class="card">
+                <h4>Drug Interaction Alerts</h4>
+                <table style="margin-top: 10px;">
+                    <tr><th>Drug 1</th><th>Drug 2</th><th>Severity</th></tr>
+                    <tr><td>aspirin</td><td>warfarin</td><td><span class="badge high">HIGH</span></td></tr>
+                    <tr><td>metformin</td><td>contrast dye</td><td><span class="badge med">MODERATE</span></td></tr>
+                    <tr><td>lisinopril</td><td>potassium</td><td><span class="badge med">MODERATE</span></td></tr>
+                </table>
+                <p style="margin-top: 15px; color: #ff4444; font-weight: bold;">⚠️ Bleeding risk detected — Monitor INR</p>
+            </div>
+        </div>
+        <p class="slide-number">7 / 9</p>
+    </div>
+
+    <!-- SLIDE 8: Confidence Gate -->
+    <div class="slide" data-slide="8">
+        <h2>Confidence Gating & Human-in-the-Loop</h2>
+        <div class="img-container">
+            <img src="../results/8k/figure6_confidence_gate.png" alt="Confidence Gate" style="max-height: 350px;">
+            <p class="caption">Figure 3: Novelty #7 — Confidence Gating Architecture</p>
+        </div>
+        <div class="grid grid-3" style="margin-top: 30px;">
+            <div class="card" style="border-color: #00ff88;">
+                <h4 style="color: #00ff88;">C > 0.75</h4>
+                <p>Auto-approval → Direct EHR export</p>
+            </div>
+            <div class="card" style="border-color: #ff4444;">
+                <h4 style="color: #ff4444;">C < 0.75</h4>
+                <p>Flagged → Human review required</p>
+            </div>
+            <div class="card" style="border-color: #00d2ff;">
+                <h4 style="color: #00d2ff;">Threshold</h4>
+                <p>Validated at 0.75 for optimal precision-recall tradeoff</p>
+            </div>
+        </div>
+        <p class="slide-number">8 / 9</p>
+    </div>
+
+    <!-- SLIDE 9: Conclusion -->
+    <div class="slide" data-slide="9">
+        <h2>Conclusion & Future Work</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h4>Key Achievements</h4>
+                <ul style="margin-left: 20px; margin-top: 15px; line-height: 2;">
+                    <li><span class="highlight">8 Novel</span> AI contributions</li>
+                    <li>BioBERT NER F1: <span class="highlight">0.87</span> (+15% vs baseline)</li>
+                    <li>ICD-10 Precision@3: <span class="highlight">0.89</span></li>
+                    <li>Summarization compression: <span class="highlight">42%</span></li>
+                    <li>HIPAA-compliant PHI removal</li>
+                    <li>Real-time drug interaction alerts</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>Future Enhancements</h4>
+                <ul style="margin-left: 20px; margin-top: 15px; line-height: 2;">
+                    <li>Fine-tune models on MIMIC-III dataset</li>
+                    <li>GPU acceleration for real-time inference</li>
+                    <li>Expand ICD-10 coverage to 100+ codes</li>
+                    <li>SHAP-based explainability</li>
+                    <li>Integration with hospital EHR systems</li>
+                    <li>Multi-language support</li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <h3 style="color: #00d2ff;">GitHub: github.com/Jijnash2636/MedDocAssist-Clinical-NLP</h3>
+        </div>
+        <p class="slide-number">9 / 9</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <button onclick="prevSlide()">← Previous</button>
+        <button onclick="nextSlide()">Next →</button>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 9;
+
+        function showSlide(n) {
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+            document.querySelector(`[data-slide="${n}"]`).classList.add('active');
+            document.getElementById('progress').style.width = `${(n / totalSlides) * 100}%`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Initialize
+        showSlide(1);
+    </script>
+</body>
+</html>

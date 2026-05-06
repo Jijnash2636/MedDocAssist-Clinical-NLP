@@ -1,66 +1,40 @@
-# MedDocAssist Clinical NLP - GitIgnore
-
-# Python
+# Byte-compiled / optimized / distributed files
 __pycache__/
-*.py[codz]
+*.py[cod]
 *$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
+*.pyc
 
-# Environments
-.env
-.envrc
-.venv
+# Virtual environments
+.venv/
 env/
 venv/
-ENV/
-env.bak/
-venv.bak/
 
-# Jupyter
-.ipynb_checkpoints
-profile_default/
-ipython_config.py
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+*.txt.bak
+
+# Helper scripts (not part of main project)
+generate_*.py
+test_*.py
+verify_*.py
+open_ui.py
+run_*.bat
+RUN.bat
+run_*.py
+start_server.py
+create_samples.py
+
+# Generated outputs
+figures_output.txt
+evaluation_results.json
+results/8k/
+results/*_waifu2x*
 
 # IDE
 .vscode/
 .idea/
-.spyderproject
-.spyproject
-.ropeproject
-
-# Testing
-.tox/
-.nox/
-.coverage
-.coverage.*
-.pytest_cache/
-htmlcov/
-
-# Django/Flask
-*.log
-local_settings.py
-db.sqlite3
-instance/
-
-# Misc
-.DS_Store
-*.log
-.gradio/
-models/
-data/
